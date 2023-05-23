@@ -1,7 +1,7 @@
 export const ratings = [
-  { id: 1, name: "⭐️", value: 1 },
-  { id: 2, name: "⭐️⭐️", value: 2 },
-  { id: 3, name: "⭐️⭐️⭐️", value: 3 },
-  { id: 4, name: "⭐️⭐️⭐️⭐️", value: 4 },
-  { id: 5, name: "⭐️⭐️⭐️⭐️⭐️", value: 5 },
+  { id: 1, name: "⭐️ 1.0", value: 1 },
+  { id: 2, name: "⭐️⭐️ 2.0", value: 2 },
+  { id: 3, name: "⭐️⭐️⭐️ 3.0", value: 3 },
+  { id: 4, name: "⭐️⭐️⭐️⭐️ 4.0", value: 4 },
+  { id: 5, name: "⭐️⭐️⭐️⭐️⭐️ 5.0", value: 5 },
 ];

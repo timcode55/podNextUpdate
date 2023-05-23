@@ -81,58 +81,55 @@ const Filter = (props) => {
         </h1>
         <form className={classes.formWrapper}>
           <div className={classes.filterSelection}>
-            <label>
-              <p>Enter Min Rating</p>
+            <div className={classes.filterWrapper}>
+              <p className={classes.filterTitle}>Enter Min Rating</p>
               <select
                 className="selection"
                 name="scripts"
                 onChange={handleRatingInput}
+                style={{ marginLeft: "10px" }}
               >
-                {ratings.map((item) => {
-                  return (
-                    <option key={item.id} value={item.value}>
-                      {item.name}
-                    </option>
-                  );
-                })}
+                {ratings.map((item) => (
+                  <option key={item.id} value={item.value}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
-            </label>
+            </div>
           </div>
           <div className={classes.filterSelection}>
-            <label>
-              <p>Enter # of Ratings</p>
+            <div className={classes.filterWrapper}>
+              <p className={classes.filterTitle}>Enter # of Ratings</p>
               <select
                 className="selection"
                 name="scripts"
                 onChange={handleNumRatingsInput}
+                style={{ marginLeft: "10px" }}
               >
-                {filterNumberRatings.map((item) => {
-                  return (
-                    <option key={item.id} value={item.value}>
-                      {item.name}
-                    </option>
-                  );
-                })}
+                {filterNumberRatings.map((item) => (
+                  <option key={item.id} value={item.value}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
-            </label>
+            </div>
           </div>
           <div className={classes.filterSelection}>
-            <label>
-              <p>Genre</p>
+            <div className={classes.filterWrapper}>
+              <p className={classes.filterTitle}>Genre</p>
               <select
                 className="selection"
                 name="scripts"
                 onChange={handleGenreInput}
+                style={{ marginLeft: "10px" }}
               >
-                {categoriesArray.map((item) => {
-                  return (
-                    <option key={item.id} value={item.name}>
-                      {item.name}
-                    </option>
-                  );
-                })}
+                {categoriesArray.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
-            </label>
+            </div>
           </div>
           <div className={classes.buttonWrapper}>
             <button

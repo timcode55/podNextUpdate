@@ -4,7 +4,9 @@
   justify-content: center;
   flex-direction: row;
   /* background-color: #3453ad; */
-  margin-bottom: -90px;
+  width: 61%;
+  /* text-align: center; */
+  margin: -20px auto -80px;
 }
 
 .title {
@@ -12,7 +14,7 @@
   margin-top: 30px;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 1.2rem;
   margin-top: 100px;
 }
 
@@ -25,7 +27,50 @@
 }
 
 .selection {
-  background-color: white;
-  height: 30px;
+  /* background-color: white; */
+  height: 40px;
   font-size: 1em;
+  border-radius: 6px;
+  background-color: rgb(215, 213, 213);
+}
+
+@media (max-width: 576px) {
+  .headerContainer {
+    align-items: center;
+    flex-direction: column;
+  }
+  .selectionBoxContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .selectionBox {
+    margin-top: 20px;
+  }
+  .backgroundContainer {
+    background-color: rgb(215, 213, 213);
+    width: 130%;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .headerContainer {
+    align-items: center;
+    flex-direction: column;
+  }
+  .selectionBoxContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .selectionBox {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+}
+
+@media (min-width: 1201px) {
 }

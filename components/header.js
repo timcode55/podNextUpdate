@@ -63,7 +63,7 @@ const Header = (props) => {
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
 
   return (
-    <div>
+    <div className={classes.backgroundContainer}>
       <div className={classes.headerContainer}>
         <h1 className={classes.title}>
           TOP PODCASTS -{" "}

@@ -158,7 +158,7 @@ export const categoriesArray = [
   { id: 203, name: "Crafts", parent_id: 82 },
   { id: 99, name: "News", parent_id: 67 },
   { id: 1001, name: "Top Twenty", parent_id: 1001 },
-  { id: 0, name: "", parent_id: 0 },
+  // { id: 0, name: "", parent_id: 0 },
 ];
 
 // SORT ARRAY ALPHABETICALLY

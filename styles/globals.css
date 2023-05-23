@@ -16,8 +16,18 @@ a {
 }
 
 .selection {
-  background-color: white;
+  /* background-color: white; */
   height: 30px;
   font-size: 1em;
   width: 190px;
+  border: 0px;
+  /* background-color: rgb(196, 194, 194); */
+  /* background-color: rgb(215, 213, 213); */
+  background-color: rgb(237, 235, 235);
+}
+
+@media (max-width: 576px) {
+  .selection {
+    width: 80%;
+  }
 }
