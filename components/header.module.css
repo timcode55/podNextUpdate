@@ -1,0 +1,31 @@
+.headerContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-direction: row;
+  /* background-color: #3453ad; */
+  margin-bottom: -90px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 1.5em;
+  margin-top: 100px;
+}
+
+.selectionBoxContainer {
+  display: flex;
+}
+
+.selectionBox {
+  margin: 0 50px;
+}
+
+.selection {
+  background-color: white;
+  height: 30px;
+  font-size: 1em;
+}

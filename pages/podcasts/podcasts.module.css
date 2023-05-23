@@ -1,0 +1,149 @@
+.mainContainer {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(196, 194, 194);
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .top-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .podcontainer {
+    width: 250px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+  .rating-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+  }
+
+  .podButtons {
+    display: flex;
+    flex-direction: column;
+  }
+  .webButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: -5px;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .display-image:hover,
+  .display-image:active {
+    background-color: #000000;
+    opacity: 0.6;
+    transition: all ease-in-out 200ms;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+    -webkit-touch-callout: none; /*only to disable context menu on long press*/
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .podButtons {
+    display: flex;
+    flex-direction: column;
+  }
+  .webButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: -5px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .top-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .selection-boxes {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .selection-box {
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .container {
+    margin-top: -10px;
+  }
+  .podButtons {
+    display: flex;
+    flex-direction: column;
+  }
+  .webButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: -5px;
+  }
+
+  .rating-overlay {
+    display: flex;
+    align-items: center;
+    height: 35px;
+  }
+
+  .display-image:hover,
+  .display-image:active {
+    background-color: #000000;
+    opacity: 0.6;
+    transition: all ease-in-out 200ms;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+    -webkit-touch-callout: none; /*only to disable context menu on long press*/
+  }
+}

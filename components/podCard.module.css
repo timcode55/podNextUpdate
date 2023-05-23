@@ -1,0 +1,90 @@
+.divStyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+.podcontainer {
+  width: 320px;
+  height: auto;
+  background-color: royalblue;
+  margin: 0 auto;
+  filter: drop-shadow(4px 4px 10px #0d0d0e);
+}
+
+.podimage {
+  width: 60%;
+  filter: drop-shadow(4px 4px 10px #0d0d0e);
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.podimage:hover {
+  opacity: 0.6;
+  transition: all ease-in-out 200ms;
+  cursor: pointer;
+}
+
+.podtitle {
+  color: rgb(1, 1, 1);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.6rem;
+  padding-top: 10px;
+  height: 50px;
+}
+
+.desc {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ptext {
+  font-size: 0.8rem;
+  padding: 10px 20px;
+  overflow: hidden;
+}
+
+.podButtons {
+  display: flex;
+  justify-content: space-around;
+  padding-top: -25px;
+  padding-bottom: 20px;
+}
+
+.webButton {
+  border: 1px solid black;
+  padding: 1em;
+  outline: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-style: 1.2em;
+  letter-spacing: 0.2em;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  background: rgb(63, 63, 63);
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+}
+
+.contratings {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 15px;
+}
+
+.ratingimage {
+  width: 35px;
+}
+
+.ratingtext {
+  color: white;
+  font-size: 1rem;
+}

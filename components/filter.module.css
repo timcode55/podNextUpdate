@@ -1,0 +1,45 @@
+.filterContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 60px;
+  background-color: #445a9e;
+}
+
+.formWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  width: 60vw;
+  text-align: center;
+  background-color: #c4c2c2;
+  margin-bottom: -110px;
+  border-radius: 10px;
+}
+
+.filterButton {
+  background: rgb(213, 211, 211);
+  width: 120px;
+  height: 50px;
+  border-radius: 5px;
+  align-self: flex-end;
+  background-color: blueviolet;
+  color: white;
+  cursor: pointer;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.buttonWrapper {
+  align-self: end;
+}
+
+.selection {
+  background-color: white;
+  height: 30px;
+  font-size: 1em;
+}
