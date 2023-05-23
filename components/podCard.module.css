@@ -7,8 +7,9 @@
 }
 
 .podcontainer {
-  width: 320px;
-  height: auto;
+  display: flex;
+  max-width: 320px;
+  /* height: auto; */
   background-color: royalblue;
   margin: 0 auto;
   filter: drop-shadow(4px 4px 10px #0d0d0e);
