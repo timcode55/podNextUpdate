@@ -32,6 +32,7 @@ const Header = (props) => {
   };
 
   async function getNewPodcasts(categoryId, page) {
+    console.log("getnewpodcasts called");
     podcastCtx.setLoader(true);
     console.log(categoryId, page, "categoryid, page");
     axios

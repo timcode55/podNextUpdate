@@ -32,8 +32,7 @@ const PodList = (props) => {
           </div>
         </div>
       )}
-      {/* {!PodcastCtx.loader ? <Arrow /> : null} */}
-      {<Arrow />}
+      {!PodcastCtx.loader ? <Arrow /> : null}
     </div>
   );
 };
