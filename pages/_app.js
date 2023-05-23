@@ -1,5 +1,5 @@
 import { PodcastContextProvider } from "../store/podcastContext";
-import "../src/app/globals.css";
+import "../styles/globals.css";
 
 import Head from "next/head";
 
