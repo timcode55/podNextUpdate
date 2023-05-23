@@ -64,9 +64,8 @@
 @media (max-width: 576px) {
   .formWrapper {
     flex-direction: column;
-    /* text-align: center; */
-    width: 70vw;
-    align-items: stretch;
+    width: 85vw;
+    align-items: inherit;
   }
   .buttonWrapper {
     align-self: inherit;
