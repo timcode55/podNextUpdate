@@ -19,8 +19,8 @@ const Filter = (props) => {
   const handleRatingInput = (e) => {
     e.preventDefault();
     console.log(e.target.value, "VALUE IN SELECT BOX IN RATING 71**");
+    podcastCtx.setRating(e.target.value);
     setRating(e.target.value);
-    // podcastCtx.setRating(e.target.value);
   };
   // const handleNumberRatingsInput = (e) => {
   //   e.preventDefault();
@@ -31,12 +31,14 @@ const Filter = (props) => {
   const handleGenreInput = (e) => {
     e.preventDefault();
     console.log(e.target.value, "VALUE IN SELECT BOX IN GENRE 71**");
+    podcastCtx.setGenre(e.target.value);
     setGenre(e.target.value);
   };
 
   const handleNumRatingsInput = (e) => {
     e.preventDefault();
     console.log(e.target.value, "VALUE IN SELECT BOX IN numratingsfilter 60**");
+    podcastCtx.setNumberRatings(e.target.value);
     setNumRatingsFilter(e.target.value);
   };
 

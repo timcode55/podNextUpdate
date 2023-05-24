@@ -67,10 +67,32 @@
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
+  .title {
+    min-width: 35%;
+  }
+  .headerContainer {
+    align-items: end;
+    padding: 10px 0 10px;
+  }
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
+  .title {
+    min-width: 45%;
+  }
+  .headerContainer {
+    align-items: end;
+    padding: 20px 0 0px;
+  }
 }
 
 @media (min-width: 1201px) {
+  .title {
+    min-width: 45%;
+    font-size: 1.6rem;
+  }
+  .headerContainer {
+    align-items: end;
+    padding: 20px 0 0px;
+  }
 }

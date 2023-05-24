@@ -5,19 +5,34 @@ import PodcastContext from "../store/podcastContext";
 import classes from "./header.module.css";
 import axios from "axios";
 
+let cacheObject = {},
+  cacheArray = [];
+
 const Header = (props) => {
-  // console.log(props, "props in header");
-  // const [state, setState] = useContext(PodcastContext);
+  console.log(props.podcasts, "props in header");
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
   const [rating, setRating] = useState("");
-  const [numberRatings, setNumberRatings] = useState("");
   const [podcasts, setPodcasts] = useState(props.podcasts);
-  const [genre, setGenre] = useState("AI & Data Science");
   const [loader, setLoader] = useState(false);
-  const [dbCategories, setDbCategories] = useState([]);
   const [mostRecentUpdate, setMostRecentUpdate] = useState("podcasts");
   const podcastCtx = useContext(PodcastContext);
+  console.log(podcastCtx, "PODCASTCTX in header");
+
+  const renderCache = async (genreId) => {
+    const pageToFind = podcastCtx.page;
+    const data = cacheArray[0][`${genreId}`];
+    console.log(data, "DATA IN RENDERCACHE");
+    await setPodcasts(data.data);
+    // const toString = JSON.stringify(data);
+    // localStorage.setItem("podcasts", toString);
+  };
+
+  cacheObject["67"] = {
+    data: props.podcasts || [],
+    page: podcastCtx.page,
+  };
+  cacheArray.push(cacheObject);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -28,7 +43,16 @@ const Header = (props) => {
     let categoryId = categoriesArray.find((item) => item.id === findValue).id;
     setCategory(categoryName, categoryId);
     podcastCtx.setCategory(categoryName, categoryId);
-    getNewPodcasts(categoryId, 1);
+    console.log(e.target.value, "E.TARGET.VALUE FOR CACHE IN HANDLECHANGE");
+    console.log(
+      cacheArray[0][`${e.target.value}`],
+      "cacheArray[0][`${e.target.value}`]"
+    );
+    if (cacheArray[0][`${e.target.value}`]) {
+      renderCache(e.target.value);
+    } else {
+      getNewPodcasts(e.target.value, 1);
+    }
   };
 
   async function getNewPodcasts(categoryId, page) {
@@ -49,6 +73,10 @@ const Header = (props) => {
           response.data.data,
           "RESPONSE.DATA IN HEADER FOR GETPODCASTSBYCATEGORY"
         );
+        cacheObject[categoryId] = {
+          data: response.data.data || [],
+          page: podcastCtx.page,
+        };
         podcastCtx.setLoader(false);
       });
   }
@@ -62,14 +90,21 @@ const Header = (props) => {
       setMostRecentUpdate("podcasts");
     }
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
-
+  console.log(cacheArray, "CACHEARRAY");
+  console.log(cacheObject, "CACHEOBJECT");
+  console.log(podcasts, "PODCASTS IN HEADER%%%%%%%%");
   return (
     <div className={classes.backgroundContainer}>
       <div className={classes.headerContainer}>
-        <h1 className={classes.title}>
-          TOP PODCASTS -{" "}
-          {category.toUpperCase() || "most popular".toUpperCase()}
-        </h1>
+        {podcastCtx.recent === "recommend" ? (
+          <h1 className={classes.title}>FILTERED BY RATING</h1>
+        ) : (
+          <h1 className={classes.title}>
+            TOP PODCASTS -{" "}
+            {category.toUpperCase() || "most popular".toUpperCase()}{" "}
+          </h1>
+        )}
+
         <div className={classes.selectionBoxContainer}>
           <div className={classes.selectionBox}>
             <form>
@@ -132,6 +167,7 @@ const Header = (props) => {
           getData={props.getApiData}
           status={props.status}
           cache={props.cache}
+          getNewPodcasts={getNewPodcasts}
         />
       )}
     </div>

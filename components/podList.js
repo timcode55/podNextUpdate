@@ -7,7 +7,6 @@ import PodcastContext from "../store/podcastContext";
 const PodList = (props) => {
   // const [podcasts, setPodcasts] = useState(props.podcasts);
   const PodcastCtx = useContext(PodcastContext);
-  console.log(PodcastCtx, "PODCASTCTX IN PODLIST");
   console.log(props, "PROPS IN PODLIST");
   // console.log(PodcastCtx.loader, "loader - isLoading?");
   return (
@@ -24,7 +23,7 @@ const PodList = (props) => {
         <div className={classes.container}>
           <div className={classes.podcastDisplay}>
             {props.podcasts &&
-              props.podcasts.map((pod) => (
+              props?.podcasts?.map((pod) => (
                 <div key={pod.id}>
                   <PodCard key={pod.id} podcast={pod} />
                 </div>
@@ -32,7 +31,9 @@ const PodList = (props) => {
           </div>
         </div>
       )}
-      {!PodcastCtx.loader ? <Arrow /> : null}
+      {!PodcastCtx.loader && PodcastCtx.recent !== "recommend" ? (
+        <Arrow getNewPodcasts={props.getNewPodcasts} />
+      ) : null}
     </div>
   );
 };
