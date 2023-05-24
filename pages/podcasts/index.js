@@ -6,7 +6,7 @@ import classes from "./podcasts.module.css";
 import axios from "axios";
 import {
   connectToDatabase,
-  getClient,
+  // getClient,
 } from "../../components/helpers/database/mongodb";
 
 function Podcasts(props) {

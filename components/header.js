@@ -92,7 +92,7 @@ const Header = (props) => {
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
   console.log(cacheArray, "CACHEARRAY");
   console.log(cacheObject, "CACHEOBJECT");
-  console.log(podcasts, "PODCASTS IN HEADER%%%%%%%%");
+  // console.log(podcasts, "PODCASTS IN HEADER%%%%%%%%");
   return (
     <div className={classes.backgroundContainer}>
       <div className={classes.headerContainer}>

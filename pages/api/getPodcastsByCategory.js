@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
   connectToDatabase,
-  getClient,
+  // getClient,
 } from "../../components/helpers/database/mongodb";
 
 export default async function handler(req, res) {
@@ -12,7 +12,8 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     let mongoClient;
     try {
-      mongoClient = getClient() || (await connectToDatabase());
+      mongoClient = await connectToDatabase();
+      // console.log(mongoClient, "MONGOCLIENT");
     } catch (error) {
       return res.status(401).json({
         message: "Sorry, DB is not working",
@@ -30,11 +31,9 @@ export default async function handler(req, res) {
           },
         }
       );
-      console.log("testing", "TEST LET IT WORK");
       const finalArray = [];
       for (let pod of response.data.podcasts) {
         const result = await getTopPods.find({ id: pod.id }).toArray();
-        console.log(JSON.parse(JSON.stringify(result)), "RESULT FROM DB");
         if (result.length > 0) {
           pod.rating = result[0].rating;
           pod.numberOfRatings = result[0].numberOfRatings;
