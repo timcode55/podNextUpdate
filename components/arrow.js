@@ -13,7 +13,12 @@ const Arrow = (props) => {
 
   const addPage = async () => {
     PodcastCtx.setPage(PodcastCtx.page + 1);
-    await props.getNewPodcasts(PodcastCtx.category, PodcastCtx.page + 1);
+    const key = `${PodcastCtx.category?.id}_${PodcastCtx.page + 1}`;
+    if (props.podCache[key]) {
+      props.renderCache(key);
+    } else {
+      await props.getNewPodcasts(PodcastCtx.category?.id, PodcastCtx.page + 1);
+    }
     setTimeout(function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 600);
@@ -21,7 +26,12 @@ const Arrow = (props) => {
 
   const subPage = async () => {
     PodcastCtx.setPage(PodcastCtx.page - 1);
-    await props.getNewPodcasts(PodcastCtx.category, PodcastCtx.page - 1);
+    const key = `${PodcastCtx.category?.id}_${PodcastCtx.page - 1}`;
+    if (props.podCache[key]) {
+      props.renderCache(key);
+    } else {
+      await props.getNewPodcasts(PodcastCtx.category?.id, PodcastCtx.page - 1);
+    }
     setTimeout(function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 600);

@@ -7,7 +7,7 @@ import PodcastContext from "../store/podcastContext";
 const PodList = (props) => {
   // const [podcasts, setPodcasts] = useState(props.podcasts);
   const PodcastCtx = useContext(PodcastContext);
-  // console.log(props, "PROPS IN PODLIST");
+  console.log(props, "PROPS IN PODLIST");
   // console.log(PodcastCtx.loader, "loader - isLoading?");
   return (
     <div className={classes.outerContainer}>
@@ -32,7 +32,11 @@ const PodList = (props) => {
         </div>
       )}
       {!PodcastCtx.loader && PodcastCtx.recent !== "recommend" ? (
-        <Arrow getNewPodcasts={props.getNewPodcasts} />
+        <Arrow
+          getNewPodcasts={props.getNewPodcasts}
+          renderCache={props.renderCache}
+          podCache={props.podCache}
+        />
       ) : null}
     </div>
   );

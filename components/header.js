@@ -5,8 +5,7 @@ import PodcastContext from "../store/podcastContext";
 import classes from "./header.module.css";
 import axios from "axios";
 
-let cacheObject = {},
-  cacheArray = [];
+const podCache = {};
 
 const Header = (props) => {
   console.log(props.podcasts, "props in header");
@@ -19,20 +18,22 @@ const Header = (props) => {
   const podcastCtx = useContext(PodcastContext);
   console.log(podcastCtx, "PODCASTCTX in header");
 
-  const renderCache = async (genreId) => {
-    const pageToFind = podcastCtx.page;
-    const data = cacheArray[0][`${genreId}`];
-    console.log(data, "DATA IN RENDERCACHE");
-    await setPodcasts(data.data);
-    // const toString = JSON.stringify(data);
-    // localStorage.setItem("podcasts", toString);
+  const saveToCache = (genreId, page, array) => {
+    const key = `${genreId}_${page}`;
+    if (!podCache[key]) {
+      podCache[key] = array;
+    }
   };
 
-  cacheObject["67"] = {
-    data: props.podcasts || [],
-    page: podcastCtx.page,
+  const renderCache = (key) => {
+    if (podCache[key]) {
+      setPodcasts(podCache[key]);
+    } else {
+      getNewPodcasts(category, podcastCtx.page);
+    }
   };
-  cacheArray.push(cacheObject);
+
+  podCache["67_1"] = props.podcasts || [];
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -43,20 +44,16 @@ const Header = (props) => {
     let categoryId = categoriesArray.find((item) => item.id === findValue).id;
     setCategory(categoryName, categoryId);
     podcastCtx.setCategory(categoryName, categoryId);
-    console.log(e.target.value, "E.TARGET.VALUE FOR CACHE IN HANDLECHANGE");
-    console.log(
-      cacheArray[0][`${e.target.value}`],
-      "cacheArray[0][`${e.target.value}`]"
-    );
-    if (cacheArray[0][`${e.target.value}`]) {
-      renderCache(e.target.value);
+    const key = `${categoryId}_${podcastCtx.page}`;
+    if (podCache[key]) {
+      renderCache(key);
     } else {
       getNewPodcasts(e.target.value, 1);
     }
   };
 
-  async function getNewPodcasts(categoryId, page) {
-    console.log("getnewpodcasts called");
+  async function getNewPodcasts(categoryId, page, genreId) {
+    // console.log("getnewpodcasts called");
     podcastCtx.setLoader(true);
     console.log(categoryId, page, "categoryid, page");
     axios
@@ -69,14 +66,13 @@ const Header = (props) => {
         setPodcasts(response.data.data);
         podcastCtx.setPodcasts(response.data.data);
         podcastCtx.setRecentUpdate("podcasts");
-        console.log(
-          response.data.data,
-          "RESPONSE.DATA IN HEADER FOR GETPODCASTSBYCATEGORY"
-        );
-        cacheObject[categoryId] = {
-          data: response.data.data || [],
-          page: podcastCtx.page,
-        };
+        // console.log(
+        //   response.data.data,
+        //   "RESPONSE.DATA IN HEADER FOR GETPODCASTSBYCATEGORY"
+        // );
+        const key = `${categoryId}_${page}`;
+        podCache[key] = response.data.data || [];
+
         podcastCtx.setLoader(false);
       });
   }
@@ -90,8 +86,7 @@ const Header = (props) => {
       setMostRecentUpdate("podcasts");
     }
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
-  console.log(cacheArray, "CACHEARRAY");
-  console.log(cacheObject, "CACHEOBJECT");
+  console.log(podCache, "podCache");
   // console.log(podcasts, "PODCASTS IN HEADER%%%%%%%%");
   return (
     <div className={classes.backgroundContainer}>
@@ -168,6 +163,8 @@ const Header = (props) => {
           status={props.status}
           cache={props.cache}
           getNewPodcasts={getNewPodcasts}
+          renderCache={renderCache}
+          podCache={podCache}
         />
       )}
     </div>

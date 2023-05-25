@@ -38,6 +38,7 @@ export default async function handler(req, res) {
           pod.rating = result[0].rating;
           pod.numberOfRatings = result[0].numberOfRatings;
           pod.itunes = result[0].itunes;
+          pod.TESTING = "TESTING";
         } else {
           pod.rating = null;
           pod.numberOfRatings = null;

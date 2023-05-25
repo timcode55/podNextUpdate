@@ -49,6 +49,7 @@ export async function getStaticProps() {
       const result = await getTopPods.findOne({ id: pod.id });
       pod.rating = result?.rating ?? null;
       pod.numberOfRatings = result?.numberOfRatings ?? null;
+      pod.itunes = result?.itunes ?? null;
       finalArray.push(pod);
     }
     return {
