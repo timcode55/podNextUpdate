@@ -1,19 +1,14 @@
 import axios from "axios";
-import {
-  connectToDatabase,
-  // getClient,
-} from "../../components/helpers/database/mongodb";
+import { connectToDatabase } from "../../components/helpers/database/mongodb";
 
 export default async function handler(req, res) {
   const categoryId = req.query.categoryId;
   const page = req.query.page;
-  // console.log(categoryId, page, req.method, "handler values");
 
   if (req.method === "GET") {
     let mongoClient;
     try {
       mongoClient = await connectToDatabase();
-      // console.log(mongoClient, "MONGOCLIENT");
     } catch (error) {
       return res.status(401).json({
         message: "Sorry, DB is not working",

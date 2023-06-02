@@ -32,9 +32,6 @@ const Filter = (props) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(rating, "rating on click");
-    console.log(genre, "genre on click");
-    console.log(numRatingsFilter, "numberRatings on click");
 
     try {
       podcastCtx.setLoader(true);

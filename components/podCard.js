@@ -1,6 +1,3 @@
-import icons8 from "../public/icons8-hashtag-52.png";
-import rating from "../public/icons8-star-48.png";
-import Image from "next/image";
 import classes from "./podCard.module.css";
 
 const PodCard = (props) => {

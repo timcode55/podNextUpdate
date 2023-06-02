@@ -22,7 +22,3 @@ export async function connectToDatabase() {
     throw error;
   }
 }
-
-// export function getClient() {
-//   return cachedClient;
-// }
