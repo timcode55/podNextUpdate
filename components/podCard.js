@@ -5,7 +5,6 @@ import classes from "./podCard.module.css";
 
 const PodCard = (props) => {
   const { podcast } = props;
-  // console.log(podcast, "PODAST DETAILS");
 
   return (
     <div className={classes.divStyle}>
@@ -26,34 +25,20 @@ const PodCard = (props) => {
             </p>
           </div>
           <div className={classes.podButtons}>
-            {/* <div className={classes.webButton}> */}
             <a href={podcast.website} target="_blank" rel="noreferrer">
               <button className={classes.webButton}>Website</button>
             </a>
-            {/* </div> */}
-            {/* <div className={classes.webButton}> */}
             <a href={podcast.itunes} target="_blank" rel="noreferrer">
               <button className={classes.webButton}>iTunes Link</button>
             </a>
-            {/* </div> */}
           </div>
 
           <div className={classes.contratings}>
             <div>
-              {/* <Image
-              className={classes.ratingimage}
-              src={icons8}
-              alt="ratingimage"
-            /> */}
               <p className={classes.ratingtext}># of Ratings</p>
               <p className={classes.ratingtext}>{podcast.numberOfRatings}</p>
             </div>
             <div>
-              {/* <Image
-              className={classes.ratingimage}
-              src={rating}
-              alt="ratingimage"
-            /> */}
               <p className={classes.ratingtext}>iTunes Rating</p>
               <p className={classes.ratingtext}>{podcast.rating}</p>
             </div>

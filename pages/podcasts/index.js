@@ -4,10 +4,7 @@ import Header from "../../components/header";
 import Filter from "../../components/filter";
 import classes from "./podcasts.module.css";
 import axios from "axios";
-import {
-  connectToDatabase,
-  // getClient,
-} from "../../components/helpers/database/mongodb";
+import { connectToDatabase } from "../../components/helpers/database/mongodb";
 
 function Podcasts(props) {
   const podcastCtx = useContext(PodcastContext);

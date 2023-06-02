@@ -5,9 +5,7 @@ import classes from "./recommend.module.css";
 import PodcastContext from "../../store/podcastContext";
 
 export default function Recommend(props) {
-  console.log(props, "props in recoomend from DB");
   const podcastCtx = useContext(PodcastContext);
-  console.log(podcastCtx, "PODCASTCTX IN recommend.js");
 
   return (
     <div className={classes.mainContainer}>

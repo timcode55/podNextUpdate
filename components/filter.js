@@ -10,34 +10,22 @@ const Filter = (props) => {
   const [rating, setRating] = useState("");
   const [genre, setGenre] = useState("AI & Data Science");
   const [numRatingsFilter, setNumRatingsFilter] = useState(10);
-  // const [numberRatings, setNumberRatings] = useState("");
-  // const [topPodcasts, setTopPodcasts] = useState(null);
-  // const [loader, setLoader] = useState(true);
   const podcastCtx = useContext(PodcastContext);
-  // console.log(podcastCtx, "PODCASTCTX IN FILTER");
 
   const handleRatingInput = (e) => {
     e.preventDefault();
-    console.log(e.target.value, "VALUE IN SELECT BOX IN RATING 71**");
     podcastCtx.setRating(e.target.value);
     setRating(e.target.value);
   };
-  // const handleNumberRatingsInput = (e) => {
-  //   e.preventDefault();
-  //   setNumberRatings(e.target.value);
-  //   // podcastCtx.setNumberRatings(e.target.value);
-  // };
 
   const handleGenreInput = (e) => {
     e.preventDefault();
-    console.log(e.target.value, "VALUE IN SELECT BOX IN GENRE 71**");
     podcastCtx.setGenre(e.target.value);
     setGenre(e.target.value);
   };
 
   const handleNumRatingsInput = (e) => {
     e.preventDefault();
-    console.log(e.target.value, "VALUE IN SELECT BOX IN numratingsfilter 60**");
     podcastCtx.setNumberRatings(e.target.value);
     setNumRatingsFilter(e.target.value);
   };
@@ -60,13 +48,9 @@ const Filter = (props) => {
           },
         }
       );
-      // console.log(topPods, "topPods");
       const result = topPods.data.data.sort((a, b) => {
         return b.rating - a.rating;
       });
-      console.log(result, "RESULT in Filter after sort");
-      // setNumberRatings("");
-      // setRating("");
       podcastCtx.setRecommend(result);
       podcastCtx.setRecentUpdate("recommend");
       podcastCtx.setLoader(false);
@@ -77,10 +61,7 @@ const Filter = (props) => {
   return (
     <div className={classes.filterContainer}>
       <div className={classes.formContainer}>
-        <h1 className={classes.title}>
-          SEARCH BY RATING
-          {/* {category.toUpperCase() || "most popular".toUpperCase()} */}
-        </h1>
+        <h1 className={classes.title}>SEARCH BY RATING</h1>
         <form className={classes.formWrapper}>
           <div className={classes.filterSelection}>
             <div className={classes.filterWrapper}>

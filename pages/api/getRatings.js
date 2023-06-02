@@ -1,14 +1,9 @@
-import {
-  connectToDatabase,
-  getClient,
-} from "../../components/helpers/database/mongodb";
+import { connectToDatabase } from "../../components/helpers/database/mongodb";
 
 export default async function handler(req, res) {
   let id = req.query.id;
-  console.log(id, "ID SENT TO GETRATINGS FUNCTION API");
-  console.log(typeof id, "typeof id");
-
   let mongoClient;
+
   try {
     mongoClient = await connectToDatabase();
   } catch (error) {
@@ -22,7 +17,6 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       const getRatings = await getRatingData.findOne({ id: id });
-      console.log(getRatings, "GETRATINGS FOR EACH ID***********");
       res.status(200).json({ data: getRatings });
     } catch (e) {
       res

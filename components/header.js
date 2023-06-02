@@ -8,7 +8,6 @@ import axios from "axios";
 const podCache = {};
 
 const Header = (props) => {
-  console.log(props.podcasts, "props in header");
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
   const [rating, setRating] = useState("");
@@ -16,7 +15,6 @@ const Header = (props) => {
   const [loader, setLoader] = useState(false);
   const [mostRecentUpdate, setMostRecentUpdate] = useState("podcasts");
   const podcastCtx = useContext(PodcastContext);
-  console.log(podcastCtx, "PODCASTCTX in header");
 
   const saveToCache = (genreId, page, array) => {
     const key = `${genreId}_${page}`;
@@ -53,9 +51,7 @@ const Header = (props) => {
   };
 
   async function getNewPodcasts(categoryId, page, genreId) {
-    // console.log("getnewpodcasts called");
     podcastCtx.setLoader(true);
-    console.log(categoryId, page, "categoryid, page");
     axios
       .get(`/api/getPodcastsByCategory?categoryId=${categoryId}&page=${page}`, {
         body: {
@@ -66,10 +62,6 @@ const Header = (props) => {
         setPodcasts(response.data.data);
         podcastCtx.setPodcasts(response.data.data);
         podcastCtx.setRecentUpdate("podcasts");
-        // console.log(
-        //   response.data.data,
-        //   "RESPONSE.DATA IN HEADER FOR GETPODCASTSBYCATEGORY"
-        // );
         const key = `${categoryId}_${page}`;
         podCache[key] = response.data.data || [];
 
@@ -86,8 +78,6 @@ const Header = (props) => {
       setMostRecentUpdate("podcasts");
     }
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
-  console.log(podCache, "podCache");
-  // console.log(podcasts, "PODCASTS IN HEADER%%%%%%%%");
   return (
     <div className={classes.backgroundContainer}>
       <div className={classes.headerContainer}>

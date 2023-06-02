@@ -1,20 +1,7 @@
-// import { MongoClient } from "mongodb";
-import {
-  connectToDatabase,
-  getClient,
-} from "../../components/helpers/database/mongodb";
+import { connectToDatabase } from "../../components/helpers/database/mongodb";
 
 export default async function handler(req, res) {
-  console.log(req.method, "REQ.METHOD");
-  console.log(req.query.rating, "req.query.rating");
-  console.log(typeof req.query.rating, "TYPEOF req.query.genre");
-  console.log(req.query.numberRatings, "req.query.#");
-  console.log(typeof req.query.numberRatings, "TYPEOF req.query.genre");
-  console.log(req.query.genre, "req.query.genre");
-  console.log(typeof req.query.genre, "TYPEOF req.query.genre");
   let value = decodeURIComponent(req.query.genre);
-  console.log(req.query.genre, "stringgenre");
-  console.log("testtttt", value);
 
   if (req.method === "GET") {
     let mongoClient;
@@ -36,7 +23,7 @@ export default async function handler(req, res) {
         })
         .toArray();
 
-      console.log(result, "gettoppodcasts from Mongodb");
+      // console.log(result, "gettoppodcasts from Mongodb");
 
       // client.close();
 
