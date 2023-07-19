@@ -42,7 +42,9 @@ const Header = (props) => {
     let categoryId = categoriesArray.find((item) => item.id === findValue).id;
     setCategory(categoryName, categoryId);
     podcastCtx.setCategory(categoryName, categoryId);
+    podcastCtx.page = 1;
     const key = `${categoryId}_${podcastCtx.page}`;
+    console.log(key, "KEY FOR CACHE");
     if (podCache[key]) {
       renderCache(key);
     } else {
