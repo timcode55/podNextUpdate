@@ -1,4 +1,5 @@
 import classes from "./podCard.module.css";
+import Link from "next/link";
 
 const PodCard = (props) => {
   const { podcast } = props;
@@ -7,9 +8,11 @@ const PodCard = (props) => {
     <div className={classes.divStyle}>
       <div className={classes.podcontainer}>
         <div className={classes.podcontent}>
-          <a href={podcast.listennotes_url} target="_blank" rel="noreferrer">
+          {/* <a href={podcast.listennotes_url} target="_blank" rel="noreferrer"> */}
+          <Link href={`/podcasts/${podcast.id}`}>
             <img className={classes.podimage} src={podcast.image} alt="pod1" />
-          </a>
+          </Link>
+          {/* </a> */}
           <div className={classes.podtitle}>
             <h1>{podcast.title.substring(0, 52)}</h1>
           </div>
