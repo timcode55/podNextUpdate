@@ -41,7 +41,8 @@ export async function getStaticProps() {
         headers: {
           "X-ListenAPI-Key": process.env.NEXT_PUBLIC_LISTEN_NOTES_API_KEY,
         },
-      }
+      },
+      { cache: "no-store" }
     );
 
     const finalArray = [];
