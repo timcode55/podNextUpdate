@@ -1,5 +1,5 @@
 import { connectToDatabase } from "../../components/helpers/database/mongodb";
-
+// Update Cache
 export default async function handler(req, res) {
   let id = req.query.id;
   let mongoClient;
