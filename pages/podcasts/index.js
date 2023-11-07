@@ -55,6 +55,7 @@ export async function getStaticProps() {
     }
     return {
       props: { isConnected: true, finalArray },
+      revalidate: 86400, // Revalidate every 24 hours (1 day)
     };
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
