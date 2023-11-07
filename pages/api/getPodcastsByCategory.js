@@ -26,6 +26,7 @@ export default async function handler(req, res) {
           },
         }
       );
+      //Update Cache
       const finalArray = [];
       for (let pod of response.data.podcasts) {
         const result = await getTopPods.find({ id: pod.id }).toArray();
