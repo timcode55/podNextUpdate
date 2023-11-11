@@ -45,7 +45,8 @@ export async function getStaticProps() {
           "Vercel-CDN-Cache-Control": "max-age=86400",
         },
       },
-      { cache: "no-store" }
+      { cache: "no-store" },
+      { next: { revalidate: 86400 } }
     );
 
     const finalArray = [];
