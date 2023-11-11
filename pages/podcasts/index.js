@@ -40,6 +40,9 @@ export async function getStaticProps() {
       {
         headers: {
           "X-ListenAPI-Key": process.env.NEXT_PUBLIC_LISTEN_NOTES_API_KEY,
+          "Cache-Control": "max-age=86400",
+          "CDN-Cache-Control": "max-age=86400",
+          "Vercel-CDN-Cache-Control": "max-age=86400",
         },
       },
       { cache: "no-store" }
@@ -55,7 +58,6 @@ export async function getStaticProps() {
     }
     return {
       props: { isConnected: true, finalArray },
-      revalidate: 86400, // Revalidate every 24 hours (1 day)
     };
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
