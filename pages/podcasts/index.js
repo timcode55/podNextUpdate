@@ -9,6 +9,8 @@ import {
   getClient,
 } from "../../components/helpers/database/mongodb";
 
+export const revalidate = 3600;
+
 function Podcasts(props) {
   const podcastCtx = useContext(PodcastContext);
 
@@ -35,7 +37,7 @@ export async function getStaticProps() {
     const db = mongoClient.db();
     const getTopPods = db.collection("ratings");
 
-    const response = await axios.get(
+    const response = await fetch(
       `https://listen-api.listennotes.com/api/v2/best_podcasts?genre_id=${67}&page=${1}&region=us&safe_mode=0`,
       {
         headers: {
@@ -52,9 +54,9 @@ export async function getStaticProps() {
         },
       }
     );
-
+    const data = await response.json();
     const finalArray = [];
-    for (const pod of response.data.podcasts) {
+    for (const pod of data?.podcasts) {
       const result = await getTopPods.findOne({ id: pod.id });
       pod.rating = result?.rating ?? null;
       pod.numberOfRatings = result?.numberOfRatings ?? null;
