@@ -46,7 +46,11 @@ export async function getStaticProps() {
         },
       },
       { cache: "no-store" },
-      { next: { revalidate: 86400 } }
+      {
+        next: {
+          revalidate: 3600, // 1 hour
+        },
+      }
     );
 
     const finalArray = [];
