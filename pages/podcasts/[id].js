@@ -42,7 +42,7 @@ export default function PodcastDetailPage() {
 
   return (
     <div>
-      <h1>Recommended Similar Podcasts</h1>
+      <h1 className="recommend-title">Recommended Similar Podcasts</h1>
       <h2>{podcast.description}</h2>
       <PodList podcasts={podcast.recommendations} />
     </div>
