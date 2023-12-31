@@ -3,7 +3,6 @@ import PodcastContext from "../../store/podcastContext";
 import Header from "../../components/header";
 import Filter from "../../components/filter";
 import classes from "./podcasts.module.css";
-import axios from "axios";
 import {
   connectToDatabase,
   getClient,
