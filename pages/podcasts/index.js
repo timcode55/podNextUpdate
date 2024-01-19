@@ -8,8 +8,6 @@ import {
   getClient,
 } from "../../components/helpers/database/mongodb";
 
-export const revalidate = 3600;
-
 function Podcasts(props) {
   const podcastCtx = useContext(PodcastContext);
 
@@ -49,7 +47,7 @@ export async function getStaticProps() {
       { cache: "no-store" },
       {
         next: {
-          revalidate: 3600, // 1 hour
+          revalidate: 86400, // 1 day
         },
       }
     );
