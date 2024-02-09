@@ -65,7 +65,7 @@ export async function getStaticProps() {
     };
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
-    return { props: { isConnected: false }, revalidate: 86400 };
+    return { props: { isConnected: false }, revalidate: 86500 };
   }
 }
 
