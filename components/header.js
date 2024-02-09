@@ -16,12 +16,12 @@ const Header = (props) => {
   const [mostRecentUpdate, setMostRecentUpdate] = useState("podcasts");
   const podcastCtx = useContext(PodcastContext);
 
-  const saveToCache = (genreId, page, array) => {
-    const key = `${genreId}_${page}`;
-    if (!podCache[key]) {
-      podCache[key] = array;
-    }
-  };
+  // const saveToCache = (genreId, page, array) => {
+  //   const key = `${genreId}_${page}`;
+  //   if (!podCache[key]) {
+  //     podCache[key] = array;
+  //   }
+  // };
 
   const renderCache = (key) => {
     if (podCache[key]) {
