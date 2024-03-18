@@ -5,7 +5,6 @@ import PodList from "../../components/podList";
 
 async function getPodcast(podId) {
   const response = await axios.get(
-    // `https://listen-api.listennotes.com/api/v2/podcasts/${podId}?next_episode_pub_date=1479154463000&sort=recent_first`,
     `https://listen-api.listennotes.com/api/v2/podcasts/${podId}/recommendations?safe_mode=0`,
     {
       headers: {
