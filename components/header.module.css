@@ -20,6 +20,7 @@
 
 .selectionBoxContainer {
   display: flex;
+  align-items: center;
 }
 
 .selectionBox {
@@ -67,22 +68,30 @@
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
-  .title {
-    min-width: 35%;
-  }
   .headerContainer {
-    align-items: end;
-    padding: 10px 0 10px;
+    align-items: center;
+    flex-direction: column;
+  }
+  .selectionBoxContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .selectionBox {
+    margin-top: 20px;
   }
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
-  .title {
-    min-width: 45%;
-  }
   .headerContainer {
-    align-items: end;
-    padding: 20px 0 0px;
+    align-items: center;
+    flex-direction: column;
+  }
+  .selectionBoxContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .selectionBox {
+    margin-top: 20px;
   }
 }
 
@@ -94,5 +103,20 @@
   .headerContainer {
     align-items: end;
     padding: 20px 0 0px;
+  }
+  .selectionBoxContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .selectContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .recentLabel {
+    display: flex;
+  }
+  .popularLabel {
+    display: flex;
+    margin-right: 20px;
   }
 }

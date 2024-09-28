@@ -9,25 +9,32 @@ const podCache = {};
 
 const Header = (props) => {
   const [value, setValue] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState({
+    catName: "Podcasts",
+    catId: "67",
+  });
   const [rating, setRating] = useState("");
   const [podcasts, setPodcasts] = useState(props.podcasts);
   const [loader, setLoader] = useState(false);
   const [mostRecentUpdate, setMostRecentUpdate] = useState("podcasts");
+  const [sortOption, setSortOption] = useState("listen_score");
   const podcastCtx = useContext(PodcastContext);
 
-  // const saveToCache = (genreId, page, array) => {
-  //   const key = `${genreId}_${page}`;
-  //   if (!podCache[key]) {
-  //     podCache[key] = array;
-  //   }
-  // };
+  const handleSelect = (e) => {
+    setSortOption(e.target.value);
+  };
+
+  useEffect(() => {
+    if (sortOption) {
+      getNewPodcasts(category.catId, podcastCtx.page, sortOption);
+    }
+  }, [sortOption]);
 
   const renderCache = (key) => {
     if (podCache[key]) {
       setPodcasts(podCache[key]);
     } else {
-      getNewPodcasts(category, podcastCtx.page);
+      getNewPodcasts(category, podcastCtx.page, sortOption);
     }
   };
 
@@ -40,7 +47,7 @@ const Header = (props) => {
       (item) => item.id === findValue
     ).name;
     let categoryId = categoriesArray.find((item) => item.id === findValue).id;
-    setCategory(categoryName, categoryId);
+    setCategory({ catName: categoryName, catId: categoryId });
     podcastCtx.setCategory(categoryName, categoryId);
     podcastCtx.page = 1;
     const key = `${categoryId}_${podcastCtx.page}`;
@@ -48,18 +55,35 @@ const Header = (props) => {
     if (podCache[key]) {
       renderCache(key);
     } else {
-      getNewPodcasts(e.target.value, 1);
+      getNewPodcasts(e.target.value, 1, sortOption);
     }
   };
 
-  async function getNewPodcasts(categoryId, page, genreId) {
+  async function getNewPodcasts(categoryId, page, sortMethod) {
+    let catNum = await categoryId.catName;
     podcastCtx.setLoader(true);
+    // let sort = "popular";
+    // if (sortMethod === "popular") {
+    //   sort = "listen_score";
+    // } else if (sortMethod === "recent") {
+    //   sort = "recent_added_first";
+    // }
+    console.log(
+      categoryId,
+      page,
+      sortMethod,
+      "categoryID_page_sort",
+      typeof sortMethod
+    );
     axios
-      .get(`/api/getPodcastsByCategory?categoryId=${categoryId}&page=${page}`, {
-        body: {
-          todo: { rating },
-        },
-      })
+      .get(
+        `/api/getPodcastsByCategory?categoryId=${categoryId}&page=${page}&sort=${sortMethod}`,
+        {
+          body: {
+            todo: { rating },
+          },
+        }
+      )
       .then((response) => {
         setPodcasts(response.data.data);
         podcastCtx.setPodcasts(response.data.data);
@@ -72,6 +96,7 @@ const Header = (props) => {
   }
 
   useEffect(() => {
+    podcastCtx.setCategory("Podcasts", 67);
     if (podcastCtx.recent === "recommend") {
       setPodcasts(podcastCtx.recommend);
       setMostRecentUpdate("recommend");
@@ -80,6 +105,10 @@ const Header = (props) => {
       setMostRecentUpdate("podcasts");
     }
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
+
+  // console.log(sortOption, "SORTOPTION");
+  // console.log(podcastCtx, "PODCASTCTX");
+  // console.log(category, "CATEGORYID********************************");
   return (
     <div className={classes.backgroundContainer}>
       <div className={classes.headerContainer}>
@@ -88,7 +117,7 @@ const Header = (props) => {
         ) : (
           <h1 className={classes.title}>
             TOP PODCASTS -{" "}
-            {category.toUpperCase() || "most popular".toUpperCase()}{" "}
+            {category.catName.toUpperCase() || "most popular".toUpperCase()}{" "}
           </h1>
         )}
 
@@ -141,6 +170,29 @@ const Header = (props) => {
                 </select>
               </label>
             </form>
+          </div>
+          <div>
+            <p className="sort-title">Sort By:</p>
+            <div className={classes.selectContainer}>
+              <label className={classes.recentLabel}>
+                <input
+                  type="radio"
+                  value="recent_added_first"
+                  checked={sortOption === "recent_added_first"}
+                  onChange={handleSelect}
+                />
+                Recent
+              </label>
+              <label className={classes.popularLabel}>
+                <input
+                  type="radio"
+                  value="listen_score"
+                  checked={sortOption === "listen_score"}
+                  onChange={handleSelect}
+                />
+                Popular
+              </label>
+            </div>
           </div>
         </div>
         <div className={classes.filterWrapper}></div>

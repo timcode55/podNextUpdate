@@ -8,7 +8,7 @@ const PodcastContext = createContext({
 
 export function PodcastContextProvider(props) {
   const [podcasts, setPodcasts] = useState([]);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState("null");
   const [recommend, setRecommend] = useState(null);
   const [loader, setLoader] = useState(false);
   const [rating, setRating] = useState("⭐️ 1.0");
