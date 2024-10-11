@@ -22,12 +22,18 @@ const Header = (props) => {
 
   const handleSelect = (e) => {
     setSortOption(e.target.value);
+    podcastCtx.setOrder(e.target.value);
   };
 
   useEffect(() => {
-    if (sortOption) {
-      getNewPodcasts(category.catId, podcastCtx.page, sortOption);
+    async function getPodcastsAfterSort() {
+      try {
+        await getNewPodcasts(category.catId, podcastCtx.page, sortOption);
+      } catch (error) {
+        console.error("Error fetching podcasts:", error);
+      }
     }
+    getPodcastsAfterSort();
   }, [sortOption]);
 
   const renderCache = (key) => {
@@ -62,19 +68,6 @@ const Header = (props) => {
   async function getNewPodcasts(categoryId, page, sortMethod) {
     let catNum = await categoryId.catName;
     podcastCtx.setLoader(true);
-    // let sort = "popular";
-    // if (sortMethod === "popular") {
-    //   sort = "listen_score";
-    // } else if (sortMethod === "recent") {
-    //   sort = "recent_added_first";
-    // }
-    console.log(
-      categoryId,
-      page,
-      sortMethod,
-      "categoryID_page_sort",
-      typeof sortMethod
-    );
     axios
       .get(
         `/api/getPodcastsByCategory?categoryId=${categoryId}&page=${page}&sort=${sortMethod}`,
@@ -96,7 +89,7 @@ const Header = (props) => {
   }
 
   useEffect(() => {
-    podcastCtx.setCategory("Podcasts", 67);
+    // podcastCtx.setCategory("Podcasts", 67);
     if (podcastCtx.recent === "recommend") {
       setPodcasts(podcastCtx.recommend);
       setMostRecentUpdate("recommend");
@@ -106,9 +99,6 @@ const Header = (props) => {
     }
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
 
-  // console.log(sortOption, "SORTOPTION");
-  // console.log(podcastCtx, "PODCASTCTX");
-  // console.log(category, "CATEGORYID********************************");
   return (
     <div className={classes.backgroundContainer}>
       <div className={classes.headerContainer}>

@@ -18,7 +18,11 @@ const Arrow = (props) => {
     if (props.podCache[key]) {
       props.renderCache(key);
     } else {
-      await props.getNewPodcasts(PodcastCtx.category?.id, PodcastCtx.page + 1);
+      await props.getNewPodcasts(
+        PodcastCtx.category?.id,
+        PodcastCtx.page + 1,
+        PodcastCtx.order
+      );
     }
     setTimeout(function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -31,7 +35,11 @@ const Arrow = (props) => {
     if (props.podCache[key]) {
       props.renderCache(key);
     } else {
-      await props.getNewPodcasts(PodcastCtx.category?.id, PodcastCtx.page - 1);
+      await props.getNewPodcasts(
+        PodcastCtx.category?.id,
+        PodcastCtx.page - 1,
+        PodcastContext.order
+      );
     }
     setTimeout(function () {
       window.scrollTo({ top: 0, behavior: "smooth" });

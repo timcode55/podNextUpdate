@@ -16,6 +16,7 @@ export function PodcastContextProvider(props) {
   const [genre, setGenre] = useState("AI & Data Science");
   const [recent, setRecentUpdate] = useState(null);
   const [page, setPage] = useState(1);
+  const [order, setOrder] = useState("listen_score");
 
   function setCategoryHandler(categoryName, categoryId) {
     setCategory({ page: 1, category: categoryName, id: categoryId });
@@ -51,6 +52,10 @@ export function PodcastContextProvider(props) {
     setPage(page);
   }
 
+  function setSortOrder(order) {
+    setOrder(order);
+  }
+
   const context = {
     podcasts: podcasts,
     category: category,
@@ -61,6 +66,7 @@ export function PodcastContextProvider(props) {
     recent,
     loader: loader,
     page,
+    order,
     setCategory: setCategoryHandler,
     setLoader: setLoaderHandler,
     setPodcasts: setPodcastsHandler,
@@ -70,6 +76,7 @@ export function PodcastContextProvider(props) {
     setGenre: setGenreHandler,
     setRecentUpdate: setRecentUpdateHandler,
     setPage: setPageHandler,
+    setOrder: setSortOrder,
   };
 
   return (
