@@ -5,6 +5,7 @@ export default async function handler(req, res) {
   const categoryId = Number(req.query.categoryId);
   const page = Number(req.query.page);
   const sortOption = req.query.sort;
+  console.log(categoryId, page, sortOption, "category, page, sortOption");
 
   if (req.method === "GET") {
     let mongoClient;

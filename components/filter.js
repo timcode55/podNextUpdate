@@ -36,6 +36,7 @@ const Filter = (props) => {
     try {
       podcastCtx.setLoader(true);
       const stringGenre = encodeURIComponent(genre);
+      console.log(stringGenre, "STRINGGENRE**");
       const topPods = await axios.get(
         `/api/getTopPodcasts?rating=${rating}&numberRatings=${numRatingsFilter}&genre=${stringGenre}`,
         {
@@ -48,6 +49,7 @@ const Filter = (props) => {
       const result = topPods.data.data.sort((a, b) => {
         return b.rating - a.rating;
       });
+      console.log(result, "RESULT FROM RECOMMEND$$$$$$$$");
       podcastCtx.setRecommend(result);
       podcastCtx.setRecentUpdate("recommend");
       podcastCtx.setLoader(false);

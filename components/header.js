@@ -27,6 +27,12 @@ const Header = (props) => {
 
   useEffect(() => {
     async function getPodcastsAfterSort() {
+      console.log(
+        category.catId,
+        podcastCtx.page,
+        sortOption,
+        "category.catId, podcastCtx.page, sortOption********************"
+      );
       try {
         await getNewPodcasts(category.catId, podcastCtx.page, sortOption);
       } catch (error) {
@@ -66,7 +72,7 @@ const Header = (props) => {
   };
 
   async function getNewPodcasts(categoryId, page, sortMethod) {
-    let catNum = await categoryId.catName;
+    // let catNum = await categoryId.catName;
     podcastCtx.setLoader(true);
     axios
       .get(
