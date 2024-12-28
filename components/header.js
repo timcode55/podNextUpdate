@@ -28,13 +28,17 @@ const Header = (props) => {
   useEffect(() => {
     async function getPodcastsAfterSort() {
       console.log(
-        category.catId,
+        podcastCtx.category.id,
         podcastCtx.page,
-        sortOption,
-        "category.catId, podcastCtx.page, sortOption********************"
+        podcastCtx.order,
+        "category.id, podcastCtx.page, sortOption********************"
       );
       try {
-        await getNewPodcasts(category.catId, podcastCtx.page, sortOption);
+        await getNewPodcasts(
+          podcastCtx.category.id,
+          podcastCtx.page,
+          podcastCtx.order
+        );
       } catch (error) {
         console.error("Error fetching podcasts:", error);
       }
@@ -46,7 +50,7 @@ const Header = (props) => {
     if (podCache[key]) {
       setPodcasts(podCache[key]);
     } else {
-      getNewPodcasts(category, podcastCtx.page, sortOption);
+      getNewPodcasts(podcastCtx.category.id, podcastCtx.page, podcastCtx.order);
     }
   };
 
@@ -61,13 +65,13 @@ const Header = (props) => {
     let categoryId = categoriesArray.find((item) => item.id === findValue).id;
     setCategory({ catName: categoryName, catId: categoryId });
     podcastCtx.setCategory(categoryName, categoryId);
-    podcastCtx.page = 1;
+    podcastCtx.setPage(1);
     const key = `${categoryId}_${podcastCtx.page}`;
     console.log(key, "KEY FOR CACHE");
     if (podCache[key]) {
       renderCache(key);
     } else {
-      getNewPodcasts(e.target.value, 1, sortOption);
+      getNewPodcasts(e.target.value, 1, podcastCtx.order);
     }
   };
 

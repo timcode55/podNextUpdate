@@ -8,7 +8,7 @@ const PodcastContext = createContext({
 
 export function PodcastContextProvider(props) {
   const [podcasts, setPodcasts] = useState([]);
-  const [category, setCategory] = useState("null");
+  const [category, setCategory] = useState({ category: "podcasts", id: 67 });
   const [recommend, setRecommend] = useState(null);
   const [loader, setLoader] = useState(false);
   const [rating, setRating] = useState("⭐️ 1.0");
@@ -19,7 +19,7 @@ export function PodcastContextProvider(props) {
   const [order, setOrder] = useState("listen_score");
 
   function setCategoryHandler(categoryName, categoryId) {
-    setCategory({ page: 1, category: categoryName, id: categoryId });
+    setCategory({ category: categoryName, id: categoryId });
   }
 
   function setPodcastsHandler(podcasts) {

@@ -18,6 +18,12 @@ const Arrow = (props) => {
     if (props.podCache[key]) {
       props.renderCache(key);
     } else {
+      console.log(
+        PodcastCtx.category?.id,
+        PodcastCtx.page + 1,
+        PodcastCtx.order,
+        "category.id, page, order&&&&&&&&&&&&&&"
+      );
       await props.getNewPodcasts(
         PodcastCtx.category?.id,
         PodcastCtx.page + 1,
@@ -35,9 +41,15 @@ const Arrow = (props) => {
     if (props.podCache[key]) {
       props.renderCache(key);
     } else {
-      await props.getNewPodcasts(
+      console.log(
         PodcastCtx.category?.id,
-        PodcastCtx.page - 1,
+        PodcastCtx.page + 1,
+        PodcastCtx.order,
+        "category.id, page, order&&&&&&&&&&&&&&"
+      );
+      await props.getNewPodcasts(
+        PodcastCtx.category?.catId,
+        PodcastCtx.page,
         PodcastContext.order
       );
     }
