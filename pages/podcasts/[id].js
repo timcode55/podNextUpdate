@@ -19,15 +19,17 @@ export default function PodcastDetailPage() {
       .then((response) => {
         console.log(response.data.data, "response.data TESTING*********");
         podcastCtx.setPodcasts(response.data.data);
+        podcastCtx.setRecommend(response.data.data);
         podcastCtx.setRecentUpdate("podcasts");
         setPodcast(response.data.data);
+        return response.data.data;
       })
       .catch((error) => {
-        console.error("Error fetching recommended podcasts:", error);
+        console.error("Error fetching similar podcasts:", error);
+      })
+      .finally(() => {
         podcastCtx.setLoader(false);
       });
-
-    return response.data.data;
   }
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function PodcastDetailPage() {
     <div>
       <h1 className="recommend-title">Recommended Similar Podcasts</h1>
       <h2>{podcast.description}</h2>
-      <PodList podcasts={podcast.recommendations} />
+      <PodList podcasts={podcastCtx.recommend} />
     </div>
   );
 }

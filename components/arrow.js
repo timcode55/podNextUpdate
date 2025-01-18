@@ -59,18 +59,20 @@ const Arrow = (props) => {
   };
   return (
     <div className={arrow.page}>
-      {page > 1 && (
+      {page > 1 && !PodcastCtx.recommend && (
         <FontAwesomeIcon
           icon={faCaretSquareLeft}
           className={arrow.arrow_left}
           onClick={subPage}
         />
       )}
-      <FontAwesomeIcon
-        icon={faCaretSquareRight}
-        className={arrow.arrow_right}
-        onClick={addPage}
-      />
+      {!PodcastCtx.recommend && (
+        <FontAwesomeIcon
+          icon={faCaretSquareRight}
+          className={arrow.arrow_right}
+          onClick={addPage}
+        />
+      )}
     </div>
   );
 };

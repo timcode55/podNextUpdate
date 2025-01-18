@@ -51,3 +51,32 @@ export default async function handler(req, res) {
     }
   }
 }
+
+// Simplified code to search:
+
+// import { Client } from 'podcast-api';
+
+// const client = Client({ apiKey: '89c65a60479f48a18b39223f8f721ef1' });
+
+// export default async function handler(req, res) {
+//   if (req.method !== 'GET') {
+//     return res.status(405).json({ error: 'Only GET requests are allowed' });
+//   }
+
+//   const { genreId = '67', page = '1', sortMethod = 'listen_score' } = req.query;
+
+//   try {
+//     const response = await client.fetchBestPodcasts({
+//       genre_id: genreId,
+//       page: parseInt(page, 10),
+//       region: 'us',
+//       sort: sortMethod,
+//       safe_mode: 0,
+//     });
+
+//     res.status(200).json(response.data);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to fetch podcasts' });
+//   }
+// }

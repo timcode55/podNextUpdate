@@ -6,6 +6,7 @@ import PodcastContext from "../store/podcastContext";
 
 const PodList = (props) => {
   const PodcastCtx = useContext(PodcastContext);
+  console.log(props, "PROPS IN PODLIST");
   return (
     <div className={classes.outerContainer}>
       {PodcastCtx.loader ? (

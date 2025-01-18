@@ -76,26 +76,23 @@ const Header = (props) => {
   };
 
   async function getNewPodcasts(categoryId, page, sortMethod) {
-    // let catNum = await categoryId.catName;
-    podcastCtx.setLoader(true);
-    axios
-      .get(
-        `/api/getPodcastsByCategory?categoryId=${categoryId}&page=${page}&sort=${sortMethod}`,
-        {
-          body: {
-            todo: { rating },
-          },
-        }
-      )
-      .then((response) => {
-        setPodcasts(response.data.data);
-        podcastCtx.setPodcasts(response.data.data);
-        podcastCtx.setRecentUpdate("podcasts");
-        const key = `${categoryId}_${page}`;
-        podCache[key] = response.data.data || [];
+    try {
+      podcastCtx.setLoader(true);
 
-        podcastCtx.setLoader(false);
-      });
+      const { data } = await axios.get(
+        `/api/getPodcastsByCategory?categoryId=${categoryId}&page=${page}&sort=${sortMethod}`
+      );
+
+      const key = `${categoryId}_${page}`;
+      podCache[key] = data.data || [];
+
+      podcastCtx.setPodcasts(data.data);
+      podcastCtx.setRecentUpdate("podcasts");
+    } catch (error) {
+      console.error("Error fetching podcasts:", error);
+    } finally {
+      podcastCtx.setLoader(false);
+    }
   }
 
   useEffect(() => {
