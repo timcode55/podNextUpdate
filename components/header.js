@@ -66,6 +66,7 @@ const Header = (props) => {
     setCategory({ catName: categoryName, catId: categoryId });
     podcastCtx.setCategory(categoryName, categoryId);
     podcastCtx.setPage(1);
+    podcastCtx.setRecommend(null);
     const key = `${categoryId}_${podcastCtx.page}`;
     console.log(key, "KEY FOR CACHE");
     if (podCache[key]) {
@@ -105,6 +106,9 @@ const Header = (props) => {
       setMostRecentUpdate("podcasts");
     }
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
+
+  console.log(array1, "ARRAY1");
+  console.log(array2, "array2");
 
   return (
     <div className={classes.backgroundContainer}>
