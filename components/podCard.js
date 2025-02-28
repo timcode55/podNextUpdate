@@ -10,7 +10,15 @@ const PodCard = (props) => {
         <div className={classes.podcontent}>
           {/* <a href={podcast.listennotes_url} target="_blank" rel="noreferrer"> */}
           <Link href={`/podcasts/${podcast.id}`}>
-            <img className={classes.podimage} src={podcast.image} alt="pod1" />
+            <img
+              className={classes.podimage}
+              src={podcast.image || "/gray_background.webp"}
+              alt="pod1"
+              onError={(e) => {
+                e.currentTarget.onerror = null; // Prevent infinite loop
+                e.currentTarget.src = "/gray_background.webp";
+              }}
+            />
           </Link>
           {/* </a> */}
           <div className={classes.podtitle}>
