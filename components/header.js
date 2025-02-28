@@ -107,8 +107,8 @@ const Header = (props) => {
     }
   }, [podcastCtx.recommend, podcastCtx.podcasts, podcastCtx.recent]);
 
-  console.log(array1, "ARRAY1");
-  console.log(array2, "array2");
+  // console.log(array1, "ARRAY1");
+  // console.log(array2, "array2");
 
   return (
     <div className={classes.backgroundContainer}>
