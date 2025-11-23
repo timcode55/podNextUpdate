@@ -1,0 +1,198 @@
+.episodeSearchCard {
+  background-color: royalblue;
+  border-radius: 0;
+  padding: 20px;
+  margin: 15px;
+  filter: drop-shadow(4px 4px 10px #0d0d0e);
+  transition: transform 0.2s;
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+}
+
+.saveButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #3453ad;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.saveButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.saveButton:active {
+  transform: scale(0.95);
+}
+
+.episodeSearchCard:hover {
+  transform: translateY(-2px);
+}
+
+.episodeContent {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.imageSection {
+  flex-shrink: 0;
+}
+
+.episodeImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 0;
+  object-fit: cover;
+  filter: drop-shadow(2px 2px 6px #0d0d0e);
+}
+
+.episodeDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.podcastInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.podcastLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.podcastLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.publisher {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.episodeTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+  line-height: 1.4;
+}
+
+.episodeMeta {
+  display: flex;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  align-items: center;
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.episodeDate,
+.episodeDuration {
+  display: inline-block;
+}
+
+.episodeDescription {
+  font-size: 0.9rem;
+  color: white;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.episodeActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.listenButton,
+.detailsButton {
+  padding: 10px 20px;
+  border-radius: 0;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: background-color 0.3s;
+  border: 1px solid black;
+  cursor: pointer;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.listenButton {
+  background-color: rgb(63, 63, 63);
+  color: white;
+}
+
+.listenButton:hover {
+  background-color: rgb(40, 40, 40);
+}
+
+.detailsButton {
+  background-color: rgb(63, 63, 63);
+  color: white;
+}
+
+.detailsButton:hover {
+  background-color: rgb(40, 40, 40);
+}
+
+@media (max-width: 768px) {
+  .episodeContent {
+    flex-direction: column;
+  }
+
+  .episodeImage {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+
+  .episodeMeta {
+    flex-wrap: wrap;
+  }
+
+  .episodeActions {
+    flex-direction: column;
+  }
+
+  .listenButton,
+  .detailsButton {
+    width: 100%;
+    text-align: center;
+  }
+}

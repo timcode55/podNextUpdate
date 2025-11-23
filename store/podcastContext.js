@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const PodcastContext = createContext({
   podcasts: [],
@@ -17,6 +17,42 @@ export function PodcastContextProvider(props) {
   const [recent, setRecentUpdate] = useState(null);
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("listen_score");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState(null);
+  const [searchType, setSearchType] = useState("podcasts"); // "podcasts" or "episodes"
+  const [episodeSearchResults, setEpisodeSearchResults] = useState(null);
+  const [favorites, setFavorites] = useState([]);
+  const [savedEpisodes, setSavedEpisodes] = useState([]);
+
+  // Load favorites from localStorage on mount
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("podcastFavorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
+  // Load saved episodes from localStorage on mount
+  useEffect(() => {
+    const storedEpisodes = localStorage.getItem("savedEpisodes");
+    if (storedEpisodes) {
+      setSavedEpisodes(JSON.parse(storedEpisodes));
+    }
+  }, []);
+
+  // Save favorites to localStorage whenever they change
+  useEffect(() => {
+    if (favorites.length >= 0) {
+      localStorage.setItem("podcastFavorites", JSON.stringify(favorites));
+    }
+  }, [favorites]);
+
+  // Save episodes to localStorage whenever they change
+  useEffect(() => {
+    if (savedEpisodes.length >= 0) {
+      localStorage.setItem("savedEpisodes", JSON.stringify(savedEpisodes));
+    }
+  }, [savedEpisodes]);
 
   function setCategoryHandler(categoryName, categoryId) {
     setCategory({ category: categoryName, id: categoryId });
@@ -56,6 +92,64 @@ export function PodcastContextProvider(props) {
     setOrder(order);
   }
 
+  function setSearchQueryHandler(query) {
+    setSearchQuery(query);
+  }
+
+  function setSearchResultsHandler(results) {
+    setSearchResults(results);
+  }
+
+  function setSearchTypeHandler(type) {
+    setSearchType(type);
+  }
+
+  function setEpisodeSearchResultsHandler(results) {
+    setEpisodeSearchResults(results);
+  }
+
+  function addToFavoritesHandler(podcast) {
+    setFavorites((prevFavorites) => {
+      // Check if already in favorites
+      const exists = prevFavorites.find((fav) => fav.id === podcast.id);
+      if (exists) {
+        return prevFavorites;
+      }
+      return [...prevFavorites, podcast];
+    });
+  }
+
+  function removeFromFavoritesHandler(podcastId) {
+    setFavorites((prevFavorites) =>
+      prevFavorites.filter((fav) => fav.id !== podcastId)
+    );
+  }
+
+  function isFavoriteHandler(podcastId) {
+    return favorites.some((fav) => fav.id === podcastId);
+  }
+
+  function addToSavedEpisodesHandler(episode) {
+    setSavedEpisodes((prevEpisodes) => {
+      // Check if already in saved episodes
+      const exists = prevEpisodes.find((ep) => ep.id === episode.id);
+      if (exists) {
+        return prevEpisodes;
+      }
+      return [...prevEpisodes, episode];
+    });
+  }
+
+  function removeFromSavedEpisodesHandler(episodeId) {
+    setSavedEpisodes((prevEpisodes) =>
+      prevEpisodes.filter((ep) => ep.id !== episodeId)
+    );
+  }
+
+  function isEpisodeSavedHandler(episodeId) {
+    return savedEpisodes.some((ep) => ep.id === episodeId);
+  }
+
   const context = {
     podcasts: podcasts,
     category: category,
@@ -67,6 +161,12 @@ export function PodcastContextProvider(props) {
     loader: loader,
     page,
     order,
+    searchQuery,
+    searchResults,
+    searchType,
+    episodeSearchResults,
+    favorites,
+    savedEpisodes,
     setCategory: setCategoryHandler,
     setLoader: setLoaderHandler,
     setPodcasts: setPodcastsHandler,
@@ -77,6 +177,16 @@ export function PodcastContextProvider(props) {
     setRecentUpdate: setRecentUpdateHandler,
     setPage: setPageHandler,
     setOrder: setSortOrder,
+    setSearchQuery: setSearchQueryHandler,
+    setSearchResults: setSearchResultsHandler,
+    setSearchType: setSearchTypeHandler,
+    setEpisodeSearchResults: setEpisodeSearchResultsHandler,
+    addToFavorites: addToFavoritesHandler,
+    removeFromFavorites: removeFromFavoritesHandler,
+    isFavorite: isFavoriteHandler,
+    addToSavedEpisodes: addToSavedEpisodesHandler,
+    removeFromSavedEpisodes: removeFromSavedEpisodesHandler,
+    isEpisodeSaved: isEpisodeSavedHandler,
   };
 
   return (

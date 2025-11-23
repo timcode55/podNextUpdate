@@ -1,13 +1,34 @@
 import classes from "./podCard.module.css";
 import Link from "next/link";
+import { useContext } from "react";
+import PodcastContext from "../store/podcastContext";
 
 const PodCard = (props) => {
   const { podcast } = props;
+  const podcastCtx = useContext(PodcastContext);
+  const isFavorite = podcastCtx.isFavorite(podcast.id);
+
+  const handleFavoriteClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isFavorite) {
+      podcastCtx.removeFromFavorites(podcast.id);
+    } else {
+      podcastCtx.addToFavorites(podcast);
+    }
+  };
 
   return (
     <div className={classes.divStyle}>
       <div className={classes.podcontainer}>
         <div className={classes.podcontent}>
+          <button
+            className={classes.favoriteButton}
+            onClick={handleFavoriteClick}
+            aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          >
+            {isFavorite ? "✓" : "+"}
+          </button>
           {/* <a href={podcast.listennotes_url} target="_blank" rel="noreferrer"> */}
           <Link href={`/podcasts/${podcast.id}`}>
             <img
@@ -22,13 +43,15 @@ const PodCard = (props) => {
           </Link>
           {/* </a> */}
           <div className={classes.podtitle}>
-            <h1>{podcast.title.substring(0, 52)}</h1>
+            <h1>{podcast.title ? podcast.title.substring(0, 52) : "Untitled"}</h1>
           </div>
           <div className={classes.desc}>
             <p className={classes.ptext}>
               {podcast.description
-                .substring(0, 200)
-                .replace(/(<([^>]+)>)/gi, "")}
+                ? podcast.description
+                    .substring(0, 200)
+                    .replace(/(<([^>]+)>)/gi, "")
+                : "No description available"}
               ...
             </p>
           </div>

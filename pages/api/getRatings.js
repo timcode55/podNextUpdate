@@ -17,14 +17,11 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       const getRatings = await getRatingData.findOne({ id: id });
-      res.status(200).json({ data: getRatings });
+      return res.status(200).json({ data: getRatings });
     } catch (e) {
-      res
+      return res
         .status(500)
         .json({ message: "Error finding the podcast in the database" });
     }
-    res
-      .status(201)
-      .json({ message: "podcast successfully found in the database" });
   }
 }
