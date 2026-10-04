@@ -19,7 +19,12 @@ export default async function handler(req, res) {
         .find({
           rating: { $gte: Number(req.query.rating) },
           numberOfRatings: { $gte: Number(req.query.numberRatings) },
-          listenNotesGenre: req.query.genre,
+          // listenNotesGenres: every Listen Notes category the scraper found the podcast in.
+          // listenNotesGenre (single category) is a fallback while the arrays fill in.
+          $or: [
+            { listenNotesGenres: req.query.genre },
+            { listenNotesGenre: req.query.genre },
+          ],
         })
         .toArray();
 
