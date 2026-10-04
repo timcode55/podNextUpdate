@@ -238,11 +238,11 @@ const Header = (props) => {
           <h1 className={classes.title}>FILTERED BY RATING</h1>
         ) : podcastCtx.recent === "episodeSearch" ? (
           <h1 className={classes.title}>
-            EPISODE RESULTS FOR "{podcastCtx.searchQuery.toUpperCase()}"
+            EPISODE RESULTS FOR &quot;{podcastCtx.searchQuery.toUpperCase()}&quot;
           </h1>
         ) : podcastCtx.recent === "search" ? (
           <h1 className={classes.title}>
-            PODCAST RESULTS FOR "{podcastCtx.searchQuery.toUpperCase()}"
+            PODCAST RESULTS FOR &quot;{podcastCtx.searchQuery.toUpperCase()}&quot;
           </h1>
         ) : (
           <h1 className={classes.title}>
@@ -366,7 +366,7 @@ const Header = (props) => {
             ))
           ) : (
             <p className={classes.noResults}>
-              No episodes found for "{podcastCtx.searchQuery}"
+              No episodes found for &quot;{podcastCtx.searchQuery}&quot;
             </p>
           )}
         </div>
